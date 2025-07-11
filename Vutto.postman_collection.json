@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "32252bdc-14ba-45d4-b3bb-f3d48cb33f18",
+		"name": "Vutto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7818517",
+		"_collection_link": "https://technodds.postman.co/workspace/My-Workspace~7d6ef2da-8a57-4bca-8ccf-adf8148ba409/collection/7818517-32252bdc-14ba-45d4-b3bb-f3d48cb33f18?action=share&source=collection_link&creator=7818517"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sankalp Pol\",\n    \"email\": \"sankalppolk123@gmail.com\",\n    \"phoneNumber\": \"9967268418\",\n    \"password\": \"Test@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localAPI}}/auth/register",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sankalppolk123@gmail.com\",\n    \"password\": \"Test@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localAPI}}/auth/login",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localAPI}}/auth/logout",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Is Logged In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localAPI}}/auth/is-logged-in",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"auth",
+								"is-logged-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bike Ads",
+			"item": [
+				{
+					"name": "Create Bike Ad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Hero Xtreme 250 for sale\",\n    \"description\": \"Selling my Hero Xtreme 250.\",\n    \"brand\": \"hero\",\n    \"model\": \"xtreme 250\",\n    \"manufacturingYear\": 2025,\n    \"kmsDriven\": 1234,\n    \"price\": 180000,\n    \"images\": [\"https://vutto.in/_next/image/?url=%2Fassets%2Fimages%2Flogo_full.png%3Fv%3D2&w=96&q=75\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localAPI}}/bike-ads",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Ads",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localAPI}}/bike-ads?brand=&model=&manufacturingYear=&kmsDriven=",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads"
+							],
+							"query": [
+								{
+									"key": "brand",
+									"value": ""
+								},
+								{
+									"key": "model",
+									"value": ""
+								},
+								{
+									"key": "manufacturingYear",
+									"value": ""
+								},
+								{
+									"key": "kmsDriven",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localAPI}}/bike-ads/6871144150b7f603268e86b8",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads",
+								"6871144150b7f603268e86b8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Ad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Hero Xtreme 250 for sale\",\n        \"description\": \"Selling my Hero Xtreme 250.\",\n        \"brand\": \"hero\",\n        \"model\": \"xtreme 250\",\n        \"manufacturingYear\": 2025,\n        \"kmsDriven\": 1234,\n        \"price\": 200000,\n        \"images\": [\n            \"https://vutto.in/_next/image/?url=%2Fassets%2Fimages%2Flogo_full.png%3Fv%3D2&w=96&q=75\"\n        ]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localAPI}}/bike-ads/6871144150b7f603268e86b8",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads",
+								"6871144150b7f603268e86b8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Bike Ads",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localAPI}}/bike-ads/user",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Ad",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localAPI}}/bike-ads/6871143e50b7f603268e86b4",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads",
+								"6871143e50b7f603268e86b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Bike Image Upload Url",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"extension\": \"png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localAPI}}/bike-ads/image/url",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads",
+								"image",
+								"url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Filters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localAPI}}/bike-ads/filters",
+							"host": [
+								"{{localAPI}}"
+							],
+							"path": [
+								"bike-ads",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localAPI",
+			"value": "http://localhost:4000",
+			"type": "string"
+		}
+	]
+}

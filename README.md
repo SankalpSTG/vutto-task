@@ -86,3 +86,7 @@ There is a ``.env.example`` file present in both the frontend and backend folder
 Install the dependencies with ``pnpm i``
 
 Run ``pnpm dev`` that's it!
+
+### Postman Collection
+
+I have also added Postman Collection JSON export in this repository that you can use to test the backend.
