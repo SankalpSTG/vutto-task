@@ -1,0 +1,1 @@
+export const USER_SESSION_DURATION = 3600000 * 24 * 30
