@@ -41,6 +41,11 @@ const deleteAd = async (req: Request, res: Response) => {
     res.status(200).json(Responses.successResponse())
 }
 
+const getFilters = async (req: Request, res: Response) => {
+    const filters = await BikeAdService.getFilters()
+    res.status(200).json(Responses.successResponse(filters))
+}
+
 export const BikeAdController = {
     createAd,
     createBikeImageUploadUrl,
@@ -48,5 +53,6 @@ export const BikeAdController = {
     getAd,
     getUserAds,
     updateAd,
-    deleteAd
+    deleteAd,
+    getFilters
 }

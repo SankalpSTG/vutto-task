@@ -13,14 +13,14 @@ const BikeDetailsContainer = () => {
     }, [id])
     return <DashboardLayout>
         {state.data ? <div className="w-full h-full overflow-y-scroll p-4">
-            <div className="grid grid-cols-2 max-[576px]:grid-cols-1">
+            <div className="grid grid-cols-2 max-[576px]:grid-cols-1 items-start">
                 <div className="flex items-center justify-start flex-wrap gap-2">
                     {state.data.images.map(image => <img className="w-[180px] flex-shrink-0 aspect-square rounded-md border-2 border-gray-200 p-1" src={image}/>)}
                 </div>
                 <div className="flex flex-col items-center justify-start gap-2">
                     <div className="w-full text-3xl font-medium">{state.data.title}</div>
                     <hr className="w-full border-gray-200"/>
-                    <div className="w-full">{state.data.description}</div>
+                    <div className="w-full whitespace-pre-line">{state.data.description}</div>
                     <hr className="w-full border-gray-200"/>
                     <div className="w-full flex flex-col items-center justify-start divide-y divide-gray-200">
                         <div className="w-full grid grid-cols-2 gap-2">

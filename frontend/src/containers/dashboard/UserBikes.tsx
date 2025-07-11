@@ -29,6 +29,7 @@ const UserBikes = () => {
             <div className="w-full flex items-center justify-end">
                 <Link to={PAGE_ENDPOINTS.newBike}><div className="bg-[#d23957] text-white p-2 rounded-md hover:bg-gray-600 cursor-pointer">Creat Ad</div></Link>
             </div>
+            {state.data.length === 0 && "Your bike ads will appear here"}
             {state.data.map(bikeAd => <div className="w-full flex items-center justify-between gap-2 border border-gray-100 hover:bg-gray-100 p-2 rounded-md">
                 <Link className="w-fit flex-shrink-0" to={PAGE_ENDPOINTS.editBike(bikeAd._id)}><div className="w-[48px] aspect-square rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
                     <img src={bikeAd.images[0]} className="w-full"/>

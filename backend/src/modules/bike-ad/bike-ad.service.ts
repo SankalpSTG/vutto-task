@@ -86,6 +86,15 @@ const deleteAd = async (userId: string, bikeId: string) => {
     })
 }
 
+const getFilters = async () => {
+    const brands = await BikeAdModel.distinct("brand")
+    const models = await BikeAdModel.distinct("model")
+    return {
+        brands,
+        models
+    }
+}
+
 export const BikeAdService = {
     createAd,
     createBikeImageUploadUrl,
@@ -93,5 +102,6 @@ export const BikeAdService = {
     deleteAd,
     getAd,
     getAds,
-    getUserAds
+    getUserAds,
+    getFilters
 }

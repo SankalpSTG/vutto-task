@@ -12,6 +12,11 @@ export const useBikeAdsStore = create<BikeAdsStore>()(
             model: ""
         },
         loading: false,
+        setFilters: (key: string, value: string) => {
+            set((state: any) => {
+                state.filters[key] = value
+            })
+        },
         fetch: async () => {
             const state = get()
             const response = await ClientApi.get<BikeAdType[]>(API_ENDPOINTS.getBikeAds(new URLSearchParams(state.filters).toString()))

@@ -5,6 +5,7 @@ import { BikeImageUploadUrlType } from "../../../store/bike-image-upload-url/typ
 import { API_ENDPOINTS } from "../../../constants/api-endpoints"
 import axios from "axios"
 import { FaPlus } from "react-icons/fa6"
+import { ImageItem } from "../../../components/ImageItem"
 
 export type BikeImagesProps = {
     images: string[]
@@ -51,12 +52,16 @@ const BikeImages: FC<BikeImagesProps> = ({images, onChange}) => {
         <div>Images</div>
         <input id="bike-image-file-input" onChange={(e) => e.target.files?.length && setFile(e.target.files[0])} type="file" accept=".png,.jpg,.jpeg" hidden/>
         <div className="w-full h-fit flex items-center justify-start flex-wrap gap-2">
-            <label htmlFor="bike-image-file-input" className="flex-shrink-0 w-[110px] aspect-square border border-gray-200 rounded-md flex items-center justify-center cursor-pointer">
-                <FaPlus/>
+            <label htmlFor="bike-image-file-input">
+                <ImageItem>
+                    <FaPlus/>
+                </ImageItem>
             </label>
-            {images.map((image, id) => <div key={id} onClick={() => onDeleteClicked(id)} className="flex-shrink-0 w-[110px] aspect-square border border-gray-200 rounded-md flex items-center justify-center cursor-pointer overflow-hidden">
+            {/* <label htmlFor="bike-image-file-input" className="flex-shrink-0 w-[110px] aspect-square border border-gray-200 rounded-md flex items-center justify-center cursor-pointer">
+            </label> */}
+            {images.map((image, id) => <ImageItem key={id} onClick={() => onDeleteClicked(id)}>
                 <img src={image} className="w-full"/>
-            </div>)}
+            </ImageItem>)}
         </div>
     </div>
 }

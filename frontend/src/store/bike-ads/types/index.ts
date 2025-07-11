@@ -26,11 +26,17 @@ export type BikeAdsFilterType = {
     brand:string
     model:string
 }
+
+export type BikeAdsFiltersType = {
+    brands:string[]
+    models:string[]
+}
 export type BikeAdsStore = {
     data: BikeAdType[],
     filters: BikeAdsFilterType
     loading: boolean
     fetch: () => Promise<void>
+    setFilters: (key: string, value: string) => void
     reset: () => void
 }
 export type UserBikeAdsStore = {
@@ -53,4 +59,10 @@ export type BikeAdFormStore = {
     fetch: (id: string) => Promise<void>
     submit: (id?: string) => Promise<void>
     reset: () => void
+}
+export type BikeAdFiltersStore = {
+  data: BikeAdsFiltersType,
+  loading: boolean,
+  fetch: () => Promise<void>
+  reset: () => void
 }

@@ -12,4 +12,5 @@ export const API_ENDPOINTS = {
     createBikeImageUploadUrl: BASE_URL + "/bike-ads/image/url",
     newBikeAd: BASE_URL + "/bike-ads",
     editBikeAd: (id: string) => BASE_URL + "/bike-ads/" + id,
+    getBikeAdFilters: BASE_URL + "/bike-ads/filters",
 }

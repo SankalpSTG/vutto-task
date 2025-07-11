@@ -10,6 +10,7 @@ const BikeAdRouter = Router()
 
 BikeAdRouter.post("/image/url", AuthMiddleware(), validate(createBikeImageUploadUrlSchema), BikeAdController.createBikeImageUploadUrl)
 BikeAdRouter.get("/user", AuthMiddleware(), BikeAdController.getUserAds)
+BikeAdRouter.get("/filters", AuthMiddleware(), BikeAdController.getFilters)
 BikeAdRouter.get("/:id", AuthMiddleware(), BikeAdController.getAd)
 BikeAdRouter.delete("/:id", AuthMiddleware(), BikeAdController.deleteAd)
 BikeAdRouter.get("/", AuthMiddleware(), validate(getBikeAdsSchema, true), BikeAdController.getAds)
