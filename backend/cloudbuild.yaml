@@ -1,0 +1,47 @@
+steps:
+  - name: alpine
+    entrypoint: sh
+    args:
+      - "-c"
+      - |
+        echo -e "MONGO_URI=${_MONGO_URI}\nACCESS_TOKEN_SECRET=${_ACCESS_TOKEN_SECRET}\nACCESS_TOKEN_EXPIRY=${_ACCESS_TOKEN_EXPIRY}\nAWS_REGION=${_AWS_REGION}\nAWS_ACCESS_KEY_ID=${_AWS_ACCESS_KEY_ID}\nAWS_SECRET_ACCESS_KEY=${_AWS_SECRET_ACCESS_KEY}" > ./backend/.env
+  
+  - name: 'alpine'
+    dir: backend
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        echo "Current path: $(pwd)"
+        echo "Contents of current directory:"
+        ls -al
+  
+  - name: "gcr.io/cloud-builders/docker"
+    dir: backend
+    args: ["build", "-t", "us-central1-docker.pkg.dev/long-indexer-378321/cloud-run-source-deploy/vutto-node/vutto-node:$COMMIT_SHA", "."]
+
+  - name: "gcr.io/cloud-builders/docker"
+    dir: backend
+    args: ["push", "us-central1-docker.pkg.dev/long-indexer-378321/cloud-run-source-deploy/vutto-node/vutto-node:$COMMIT_SHA"]
+
+  - name: google/cloud-sdk
+    args:
+      [
+        "gcloud",
+        "run",
+        "deploy",
+        "vutto-node",
+        "--image=us-central1-docker.pkg.dev/long-indexer-378321/cloud-run-source-deploy/vutto-node/vutto-node:$COMMIT_SHA",
+        "--region",
+        "us-central1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+        "--set-env-vars=MONGO_URI=${_MONGO_URI},ACCESS_TOKEN_SECRET=${_ACCESS_TOKEN_SECRET},ACCESS_TOKEN_EXPIRY=${_ACCESS_TOKEN_EXPIRY},AWS_REGION=${_AWS_REGION},AWS_ACCESS_KEY_ID=${_AWS_ACCESS_KEY_ID},AWS_SECRET_ACCESS_KEY=${_AWS_SECRET_ACCESS_KEY}",
+      ]
+
+images:
+  - us-central1-docker.pkg.dev/long-indexer-378321/cloud-run-source-deploy/vutto-node/vutto-node:$COMMIT_SHA
+
+options:
+  logging: CLOUD_LOGGING_ONLY
