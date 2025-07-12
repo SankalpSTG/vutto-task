@@ -9,10 +9,17 @@ import cookieParser from "cookie-parser"
 import BikeAdRouter from "./modules/bike-ad/bike-ad.route"
 const app = express()
 
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
-}))
+if(process.env.ENVIRONMENT === "development"){
+    app.use(cors({
+        origin: "http://localhost:5173",
+        credentials: true
+    }))
+}else{
+    app.use(cors({
+        origin: "https://vutto.latencot.com",
+        credentials: true
+    }))
+}
 app.use(json())
 app.use(cookieParser())
 
@@ -25,7 +32,7 @@ app.use(GlobalErrorHandler)
 
 const startServer = async () => {
     await connectDatabase()
-    app.listen(4000, () => {
+    app.listen(process.env.PORT || 4000, () => {
         console.log("Server is Listening")
     })
 }
