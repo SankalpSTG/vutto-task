@@ -8,6 +8,9 @@ import { USER_SESSION_DURATION } from "./constants"
 const register = async (req: Request, res: Response) => {
     const body = req.body as RegisterType
     const response = await AuthService.register(body)
+    console.log("FINAL TOKEN: ")
+    console.log(response.accessToken)
+
     if(process.env.ENVIRONMENT == "development"){
         res.cookie("auth-token", response.accessToken, {
             httpOnly: true,
@@ -31,6 +34,8 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
     const body = req.body as LoginType
     const response = await AuthService.login(body)
+    console.log("FINAL TOKEN: ")
+    console.log(response.accessToken)
     if(process.env.ENVIRONMENT == "development"){
         res.cookie("auth-token", response.accessToken, {
             httpOnly: true,

@@ -19,7 +19,6 @@ const register = async (data: RegisterType) => {
         userId: user.id,
     }, process.env.ACCESS_TOKEN_SECRET!, 
     process.env.ACCESS_TOKEN_EXPIRY!)
-
     return {
         accessToken: accessToken,
     }
