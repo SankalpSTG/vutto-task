@@ -8,11 +8,21 @@ import { USER_SESSION_DURATION } from "./constants"
 const register = async (req: Request, res: Response) => {
     const body = req.body as RegisterType
     const response = await AuthService.register(body)
-    res.cookie("auth-token", response.accessToken, {
-        httpOnly: true,
-        secure: false,
-        maxAge: USER_SESSION_DURATION,
-    })
+    if(process.env.ENVIRONMENT == "development"){
+        res.cookie("auth-token", response.accessToken, {
+            httpOnly: true,
+            secure: false,
+            maxAge: USER_SESSION_DURATION,
+        })
+    }else{
+        res.cookie("auth-token", response.accessToken, {
+            httpOnly: true,
+            secure: true,
+            maxAge: USER_SESSION_DURATION,
+            domain: ".latencot.com",
+            sameSite: "none",
+        })
+    }
     res.status(200).json(Responses.successResponse(response))
 }
 

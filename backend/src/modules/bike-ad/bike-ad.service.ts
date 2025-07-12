@@ -26,7 +26,6 @@ const getUserAds = async (userId: string) => {
 }
 
 const getAds = async (userId: string, data: GetBikeAdsType) => {
-    console.log(data)
     const query: any = {
         isActive: true,
         userId: {

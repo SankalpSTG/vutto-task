@@ -30,7 +30,6 @@ const BikeImages: FC<BikeImagesProps> = ({images, onChange}) => {
             })
             if(!presignedUrl) return toast("Couldn't upload file")
 
-                console.log(presignedUrl)
             await axios.put(presignedUrl.data.preSignedUrl, file, {
                 headers: {
                     "Content-Type": file.type
