@@ -58,15 +58,13 @@ const isLoggedIn = async (req: Request, res: Response) => {
 const logout = async (req: Request, res: Response) => {
     if(process.env.ENVIRONMENT == "development"){
         res.clearCookie("auth-token", {
-            httpOnly: true,
             secure: false,
-            maxAge: USER_SESSION_DURATION,
+            path: "/",
         })
     }else{
         res.clearCookie("auth-token", {
-            httpOnly: true,
             secure: true,
-            maxAge: USER_SESSION_DURATION,
+            path: "/",
             domain: ".latencot.com",
             sameSite: "none",
         })
