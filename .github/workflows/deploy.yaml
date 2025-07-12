@@ -23,7 +23,7 @@ jobs:
       
       - name: Export secrets to env
         run: |
-          echo "VITE_BACKEND=${{ secrets.VITE_BACKEND }}" >> frontend/.env
+          echo "VITE_BACKEND=${{ secrets.VITE_BACKEND }}" >> ./frontend/.env
       
       - name: Install dependencies
         run: pnpm install
