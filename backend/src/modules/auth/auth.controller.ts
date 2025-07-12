@@ -12,6 +12,7 @@ const register = async (req: Request, res: Response) => {
         res.cookie("auth-token", response.accessToken, {
             httpOnly: true,
             secure: false,
+            path: "/",
             maxAge: USER_SESSION_DURATION,
         })
     }else{
@@ -19,6 +20,7 @@ const register = async (req: Request, res: Response) => {
             httpOnly: true,
             secure: true,
             maxAge: USER_SESSION_DURATION,
+            path: "/",
             domain: ".latencot.com",
             sameSite: "none",
         })
@@ -33,6 +35,7 @@ const login = async (req: Request, res: Response) => {
         res.cookie("auth-token", response.accessToken, {
             httpOnly: true,
             secure: false,
+            path: "/",
             maxAge: USER_SESSION_DURATION,
         })
     }else{
@@ -40,6 +43,7 @@ const login = async (req: Request, res: Response) => {
             httpOnly: true,
             secure: true,
             maxAge: USER_SESSION_DURATION,
+            path: "/",
             domain: ".latencot.com",
             sameSite: "none",
         })
@@ -53,13 +57,13 @@ const isLoggedIn = async (req: Request, res: Response) => {
 
 const logout = async (req: Request, res: Response) => {
     if(process.env.ENVIRONMENT == "development"){
-        res.cookie("auth-token", {
+        res.clearCookie("auth-token", {
             httpOnly: true,
             secure: false,
             maxAge: USER_SESSION_DURATION,
         })
     }else{
-        res.cookie("auth-token", {
+        res.clearCookie("auth-token", {
             httpOnly: true,
             secure: true,
             maxAge: USER_SESSION_DURATION,
