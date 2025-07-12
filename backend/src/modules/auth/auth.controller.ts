@@ -29,11 +29,21 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
     const body = req.body as LoginType
     const response = await AuthService.login(body)
-    res.cookie("auth-token", response.accessToken, {
-        httpOnly: true,
-        secure: false,
-        maxAge: USER_SESSION_DURATION,
-    })
+    if(process.env.ENVIRONMENT == "development"){
+        res.cookie("auth-token", response.accessToken, {
+            httpOnly: true,
+            secure: false,
+            maxAge: USER_SESSION_DURATION,
+        })
+    }else{
+        res.cookie("auth-token", response.accessToken, {
+            httpOnly: true,
+            secure: true,
+            maxAge: USER_SESSION_DURATION,
+            domain: ".latencot.com",
+            sameSite: "none",
+        })
+    }
     res.status(200).json(Responses.successResponse(response))
 }
 
@@ -42,7 +52,21 @@ const isLoggedIn = async (req: Request, res: Response) => {
 }
 
 const logout = async (req: Request, res: Response) => {
-    res.clearCookie("auth-token")
+    if(process.env.ENVIRONMENT == "development"){
+        res.cookie("auth-token", {
+            httpOnly: true,
+            secure: false,
+            maxAge: USER_SESSION_DURATION,
+        })
+    }else{
+        res.cookie("auth-token", {
+            httpOnly: true,
+            secure: true,
+            maxAge: USER_SESSION_DURATION,
+            domain: ".latencot.com",
+            sameSite: "none",
+        })
+    }
     res.status(200).json(Responses.successResponse())
 }
 
