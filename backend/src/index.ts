@@ -10,11 +10,13 @@ import BikeAdRouter from "./modules/bike-ad/bike-ad.route"
 const app = express()
 
 if(process.env.ENVIRONMENT === "development"){
+    console.log("Setting Development CORS")
     app.use(cors({
         origin: "http://localhost:5173",
         credentials: true
     }))
 }else{
+    console.log("Setting Production CORS")
     app.use(cors({
         origin: "https://vutto.latencot.com",
         credentials: true
